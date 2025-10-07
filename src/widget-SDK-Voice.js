@@ -204,7 +204,7 @@ function changeAgentState(idleCode){
       fetch('https://api.wxcc-us1.cisco.com/v1/agents/session/state', {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${window.myAgentService.webex.accessToken}`,
+          'Authorization': `Bearer ${window.myAgentService.webex.token.access_token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -332,7 +332,7 @@ class myDesktopSDK extends HTMLElement {
             //this.shadowRoot.getElementById("authorize").disabled = true;
             customLog("Authorization button pressed");
             this.showLoadingIcon("Authorizing in new window.");
-            let loginUrl = `${process.env.HOST_URI}/login?token=${myAgentService.webex.accessToken}`;
+            let loginUrl = `${process.env.HOST_URI}/login?token=${myAgentService.webex.token.access_token}`;
             customLog(`loginUrl:${loginUrl}`);
             const loginWindow = window.open(loginUrl);
             let complete = false;
@@ -341,7 +341,7 @@ class myDesktopSDK extends HTMLElement {
               if (loginWindow.closed) {
                 customLog('The login window has been closed.');
                 try {
-                  let response = await fetch(`${process.env.HOST_URI}/poll_token?token=${myAgentService.webex.accessToken}`)
+                  let response = await fetch(`${process.env.HOST_URI}/poll_token?token=${myAgentService.webex.token.access_token}`)
                   let json = await response.json();
                   customLog(json);
                   if(json.access_token){
@@ -700,6 +700,7 @@ class myDesktopSDK extends HTMLElement {
         });
         
         customLog(`access_token:${Cookies.get('access_token')}`);
+        //customLog(`access_token:${myAgentService.webex.token.access_token}`)
         this.loadContent();
 
         webexService.meetings.register().then(res => {

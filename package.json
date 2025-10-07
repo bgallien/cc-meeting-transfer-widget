@@ -25,5 +25,13 @@
     "@wxcc-desktop/sdk-types": "^1.0.3",
     "dotenv": "^16.0.1",
     "dotenv-webpack": "^8.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxsd-sales/cc-meeting-transfer-widget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wxsd-sales/cc-meeting-transfer-widget/issues"
+  },
+  "homepage": "https://github.com/wxsd-sales/cc-meeting-transfer-widget#readme"
 }
